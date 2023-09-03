@@ -22,8 +22,7 @@ public class CommerceApplicationTests {
     private MockMvc mvc;
 
     @Test
-    public void getPriceTest1() throws Exception
-    {
+    public void getPriceTest1() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/v1/commerce/prices?product_id=35455&brand=ZARA&periodValid=2020-06-14 10:00:00"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.startDate", is("2020-06-14 00:00:00")))
@@ -34,8 +33,7 @@ public class CommerceApplicationTests {
     }
 
     @Test
-    public void getPriceTest2() throws Exception
-    {
+    public void getPriceTest2() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/v1/commerce/prices?product_id=35455&brand=ZARA&periodValid=2020-06-14 16:00:00"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.startDate", is("2020-06-14 15:00:00")))
@@ -46,8 +44,7 @@ public class CommerceApplicationTests {
     }
 
     @Test
-    public void getPriceTest3() throws Exception
-    {
+    public void getPriceTest3() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/v1/commerce/prices?product_id=35455&brand=ZARA&periodValid=2020-06-14 21:00:00"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.startDate", is("2020-06-14 00:00:00")))
@@ -58,8 +55,7 @@ public class CommerceApplicationTests {
     }
 
     @Test
-    public void getPriceTest4() throws Exception
-    {
+    public void getPriceTest4() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/v1/commerce/prices?product_id=35455&brand=ZARA&periodValid=2020-06-15 10:00:00"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.startDate", is("2020-06-15 00:00:00")))
@@ -70,8 +66,7 @@ public class CommerceApplicationTests {
     }
 
     @Test
-    public void getPriceTest5() throws Exception
-    {
+    public void getPriceTest5() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/v1/commerce/prices?product_id=35455&brand=ZARA&periodValid=2020-06-16 21:00:00"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.startDate", is("2020-06-15 16:00:00")))

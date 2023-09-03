@@ -1,8 +1,8 @@
 package com.commerce.web;
 
 import com.commerce.bean.PriceResponse;
-import com.commerce.service.CommerceService;
 import com.commerce.constants.Constants;
+import com.commerce.service.CommerceService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -27,24 +27,24 @@ public class CommerceControllerTest {
     private CommerceService commerceService;
 
     @Test
-    public void getPrices_OK(){
+    public void getPrices_OK() {
         when(commerceService.getPrices(anyInt(), anyString(), anyString())).thenReturn(PriceResponse.builder().price(25.45).build());
 
-        PriceResponse response = commerceController.getPrices(35455,"ZARA", "2020-06-14 16:00:00");
+        PriceResponse response = commerceController.getPrices(35455, "ZARA", "2020-06-14 16:00:00");
         assertEquals(response.getPrice(), 25.45);
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void getPrices_KO_Not_Found(){
+    public void getPrices_KO_Not_Found() {
         when(commerceService.getPrices(anyInt(), anyString(), anyString())).thenThrow(new NoSuchElementException(Constants.PRICE_NOT_FOUND));
 
-        commerceController.getPrices(35455,"ZARA", "2020-06-10 16:00:00");
+        commerceController.getPrices(35455, "ZARA", "2020-06-10 16:00:00");
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void getPrices_KO_Timestamp_Not_Valid(){
+    public void getPrices_KO_Timestamp_Not_Valid() {
         when(commerceService.getPrices(anyInt(), anyString(), anyString())).thenThrow(new NoSuchElementException(Constants.TIMESTAMP_NOT_VALID));
 
-        commerceController.getPrices(35455,"ZARA", "2020-06-55 16:00:00");
+        commerceController.getPrices(35455, "ZARA", "2020-06-55 16:00:00");
     }
 }
